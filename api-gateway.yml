@@ -22,6 +22,10 @@ jwt:
           filters:
             - StripPrefix=2
             - AddRequestHeader=X-Custom-Header, Anuj
+            - name: LoggingOrdersFilter
+            - name: AuthenticationGatewayFilterFactory
+              args:
+                isEnabled: true
 eureka:
   client:
     service-url:
