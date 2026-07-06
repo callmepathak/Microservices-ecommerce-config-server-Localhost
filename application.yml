@@ -1,1 +1,3 @@
 
+parent configuration file for all the services,first all the services fetch detail from this file 
+then fetch details from their respective files.
