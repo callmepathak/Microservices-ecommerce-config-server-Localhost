@@ -1,3 +1,20 @@
 
-parent configuration file for all the services,first all the services fetch detail from this file 
-then fetch details from their respective files.
+# parent configuration file for all the services,first all the services fetch detail from this file 
+# then fetch details from their respective files.
+#eureka config
+eureka.client.service-url.defaultZone: http://discovery-service:8761/eureka
+
+#actuator config
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+  tracing:
+    sampling:
+      probability: 1.0
+
+  zipkin:
+    tracing:
+      endpoint: http://zipkin:9411/api/v2/spans
