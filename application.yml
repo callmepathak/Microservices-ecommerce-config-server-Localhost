@@ -3,5 +3,11 @@
 # then fetch details from their respective files.
 #eureka config
 eureka.client.service-url.defaultZone: http://discovery-service:8761/eureka
+#actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
 
 
