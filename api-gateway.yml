@@ -5,6 +5,9 @@ spring:
   cloud:
     gateway:
       routes:
+        # =========================
+        # Order Service API Routes
+        # =========================
         - id: order-service
           uri: lb://ORDER-SERVICE
           predicates:
@@ -16,6 +19,9 @@ spring:
               args:
                 isEnabled: false
 
+        # =============================
+        # Inventory Service API Routes
+        # =============================
         - id: inventory-service
           uri: lb://INVENTORY-SERVICE
           predicates:
@@ -28,6 +34,33 @@ spring:
               args:
                 isEnabled: true
 
+        # ==========================
+        # Swagger Route - Inventory
+        # ==========================
+        - id: inventory-swagger
+          uri: lb://INVENTORY-SERVICE
+          predicates:
+            - Path=/inventory/v3/api-docs
+
+        # ======================
+        # Swagger Route - Order
+        # ======================
+        - id: order-swagger
+          uri: lb://ORDER-SERVICE
+          predicates:
+            - Path=/orders/v3/api-docs
+
+# ==========================
+# Swagger UI Configuration
+# ==========================
+springdoc:
+  swagger-ui:
+    urls:
+      - name: Inventory Service
+        url: /inventory/v3/api-docs
+      - name: Order Service
+        url: /orders/v3/api-docs
+
 jwt:
   secretKey: 5367566B59703373367639792F423F4528482B4D6251655468576D5A71347437
 
@@ -35,3 +68,4 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka
+
