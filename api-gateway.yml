@@ -1,8 +1,7 @@
 server:
   port: 9015
-jwt:
-  secretKey: 5367566B59703373367639792F423F4528482B4D6251655468576D5A71347437
-  #api gateway config
+
+spring:
   cloud:
     gateway:
       routes:
@@ -12,11 +11,11 @@ jwt:
             - Path=/api/v1/orders/**
           filters:
             - StripPrefix=2
-        #            - RedirectTo=302, http://codingshuttle.com
             - name: LoggingOrdersFilter
             - name: Authentication
               args:
                 isEnabled: false
+
         - id: inventory-service
           uri: lb://INVENTORY-SERVICE
           predicates:
@@ -28,6 +27,10 @@ jwt:
             - name: AuthenticationGatewayFilterFactory
               args:
                 isEnabled: true
+
+jwt:
+  secretKey: 5367566B59703373367639792F423F4528482B4D6251655468576D5A71347437
+
 eureka:
   client:
     service-url:
