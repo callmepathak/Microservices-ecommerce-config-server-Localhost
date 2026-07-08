@@ -24,7 +24,7 @@ spring:
             - StripPrefix=2
             - AddRequestHeader=X-Custom-Header, Anuj
             - name: LoggingOrdersFilter
-            - name: AuthenticationGatewayFilterFactory
+            - name: Authentication
               args:
                 isEnabled: true
 
