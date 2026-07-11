@@ -5,9 +5,7 @@ spring:
   cloud:
     gateway:
       routes:
-        # =========================
         # Order Service API Routes
-        # =========================
         - id: order-service
           uri: lb://ORDER-SERVICE
           predicates:
@@ -19,9 +17,7 @@ spring:
               args:
                 isEnabled: false
 
-        # =============================
         # Inventory Service API Routes
-        # =============================
         - id: inventory-service
           uri: lb://INVENTORY-SERVICE
           predicates:
@@ -34,25 +30,19 @@ spring:
               args:
                 isEnabled: true
 
-        # ==========================
         # Swagger Route - Inventory
-        # ==========================
         - id: inventory-swagger
           uri: lb://INVENTORY-SERVICE
           predicates:
             - Path=/inventory/v3/api-docs
 
-        # ======================
         # Swagger Route - Order
-        # ======================
         - id: order-swagger
           uri: lb://ORDER-SERVICE
           predicates:
             - Path=/orders/v3/api-docs
 
-# ==========================
 # Swagger UI Configuration
-# ==========================
 springdoc:
   swagger-ui:
     urls:
